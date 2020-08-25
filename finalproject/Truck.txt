@@ -1,0 +1,79 @@
+// --------------------------------------------------------
+//                     Truck.java
+// --------------------------------------------------------
+/**
+ *		@author Ryan Ritter
+ *		
+ */
+
+public class Truck extends Vehicle{
+    private double loadMax; //in tons
+    private double towMax; //in tons
+	private boolean finalizeNotCalled = true;
+	private boolean disposeCalled;
+    
+	public void         setLoadMax(int x)     {loadMax = x;}
+	public double       getLoadMax()          {return loadMax;}
+	public void         setTowMax(int x)      {towMax = x;}
+	public double       getTowMax()           {return towMax;}
+
+	public Truck() {
+		this ( "default Truck", 0, new Person(), 0.0, 0.0);
+		System.out.println ( "Truck - default/no-arg constructor" );
+    }
+    public Truck(String manufacturerName, int engineCyls, Person dude, double maxLoad, double maxTow){
+        super(manufacturerName, engineCyls, dude);
+        loadMax = maxLoad;
+        towMax = maxTow;
+        disposeCalled = false;
+        System.out.println("Truck - 5- arg overloaded constructor");
+        
+
+    }
+    //toString method
+    public String toString() {
+		String x;
+		x = "" + super.toString() + " " + loadMax + " " + towMax;
+		return x;
+	}
+    //equals method
+    public boolean equals( Object obj ) {
+		if (this == obj) return true;		//  They're the same objects
+		if (obj == null) return false;	//  Argument is null
+		if (getClass() != obj.getClass()) return false;
+
+		Truck d = (Truck) obj;
+
+        if ((super.equals(obj) && (loadMax == d.loadMax) && (towMax == d.towMax)))	
+        {
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	//clone
+	public Truck clone()
+	{
+		return new Truck(this);
+	}
+    //copy constructor
+    public Truck (Truck original) throws NullPointerException{
+        super(original);
+        loadMax = original.loadMax;
+        towMax = original.towMax;
+		System.out.println ( "Truck - copy constructor" );
+    }
+    public void finalize() {
+		if ( finalizeNotCalled ){
+			finalizeNotCalled = false;
+			System.out.println ( "Truck - finalize method" );
+		}
+	}
+	public void dispose()
+	{
+		disposeCalled = true;
+		System.out.println ( "Truck - dispose method" );
+	}
+}

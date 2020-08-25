@@ -1,0 +1,81 @@
+// --------------------------------------------------------
+//                     Vehicle.java
+// --------------------------------------------------------
+/**
+ *		@author Ryan Ritter
+ *		
+ */
+
+ public class Vehicle{
+    private String name;
+	private int cylinders;
+    private Person owner;
+	private boolean finalizeNotCalled = true;
+	private boolean disposeCalled;
+    
+	public void         setName(String x)        {name = new String(x);}
+	public String       getName()                {return new String(name);}
+	public void         setCylinders(int x)      {cylinders = x;}
+	public int          getCylinders()           {return cylinders;}
+	public Person       getOwner()               {return owner;}
+
+	public Vehicle() {
+		this ( "default Vehicle", 0, new Person());
+		System.out.println ( "Vehicle - default/no-arg constructor" );
+    }
+    public Vehicle(String manufacturerName, int engineCyls, Person dude){
+        name = manufacturerName;
+        cylinders = engineCyls;
+        owner = new Person(dude);
+        System.out.println("Vehicle - 3 - arg overloaded constructor");
+
+    }
+    //toString method
+    public String toString() {
+		String x;
+		x = " " + name + " " + cylinders + " " + owner;
+		return x;
+	}
+    //equals method
+    public boolean equals( Object obj ) {
+		if (this == obj) return true;		//  They're the same objects
+		if (obj == null) return false;	//  Argument is null
+		if (getClass() != obj.getClass()) return false;
+
+		Vehicle d = (Vehicle) obj;
+
+        if ((obj.equals(d)) && name.equals(d.name) && (cylinders == d.cylinders))	
+        {
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	//clone
+	public Vehicle clone()
+	{
+		return new Vehicle(this);
+	}
+    //copy constructor
+    public Vehicle (Vehicle original) {
+		if ( original == null )
+            throw new NullPointerException ( "Null argument passed to Vehicle copy constructor" );
+		name = new String(original.name);
+		cylinders = original.cylinders;
+		owner = new Person(original.owner); //idk maybe
+		System.out.println ( "Vehicle - copy constructor" );
+    }
+    public void finalize() {
+		if ( finalizeNotCalled ){
+			finalizeNotCalled = false;
+			System.out.println ( "Vehicle - finalize method" );
+		}
+	}
+	public void dispose()
+	{
+		disposeCalled = true;
+		System.out.println ( "Vehicle - dispose method" );
+	}
+}

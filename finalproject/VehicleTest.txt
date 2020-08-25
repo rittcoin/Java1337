@@ -1,0 +1,164 @@
+// -------------------------------------------------
+//                    VehicleTest.java
+//					  Ryan Ritter
+// -------------------------------------------------
+public class VehicleTest{
+    public static void main(String[] args){
+        //create some vehicle objects
+
+        Vehicle mustang = new Vehicle("Ford", 6, new Person("Ryan", "Ritter", 28, "867-05-0309"));
+        Vehicle defaultVeh = new Vehicle();
+
+        //test getters and setters
+        System.out.println("Testing some vehicle objects getters :... ");
+        System.out.println("Name: " + mustang.getName() + " Cylinders: " + mustang.getCylinders() + " Owner: " + mustang.getOwner() + "\n");
+        System.out.println("Name: " + defaultVeh.getName() + " Cylinders: " + defaultVeh.getCylinders() + " Owner: " + defaultVeh.getOwner() + "\n");
+        System.out.println("Testing some vehicle objects setters :... ");
+        System.out.println("Set default's manufacturer to Chevy and set its cylinders to 8");
+        defaultVeh.setName("Chevy");
+        defaultVeh.setCylinders(8);
+        System.out.println("\n\n");
+        System.out.println("default now looks like this: " + defaultVeh + "\n");
+        
+
+        //toString test
+        System.out.println("toString test default: " + defaultVeh);
+        System.out.println("toString test Ford: " + mustang + "\n");
+
+        //copy constructor test
+        System.out.println("Copy constructor test: ");
+        Vehicle ferrari = new Vehicle(mustang);
+        System.out.println("creating copy of Ford and comparing to itself. Is it a true copy? " + ferrari.equals(mustang)+ "\n");
+
+        //equals test
+        System.out.println("Testing equals method:");
+        System.out.println("Does Ford equal default? " + mustang.equals(defaultVeh));
+        System.out.println("Does default equal Ford? " + defaultVeh.equals(mustang));
+        System.out.println("Does Ford equal itself? "+ mustang.equals(mustang));
+        System.out.println("Does default equal itself? "+ defaultVeh.equals(defaultVeh) + "\n");
+
+        //clone test
+        System.out.println("Testing clone method on default:");
+        Vehicle porsche = defaultVeh.clone();
+        System.out.println("default: " + defaultVeh);
+        System.out.println("clone: " + porsche);
+
+        System.out.println("\n\n\n");
+
+        System.out.println("Time to test our Auto class!!");
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //creating auto objects
+        Auto defaultAuto = new Auto();
+        Auto corvette = new Auto("Chevy", 12, new Person("Sara", "Ritter", 25, "444-44-0000"), 2, 2.5);
+        
+        //test getters and setters
+        System.out.println("Testing some auto objects getters :... ");
+        System.out.println("Name: " + corvette.getName() + " Cylinders: " + corvette.getCylinders() + " Owner: " + corvette.getOwner() + "\n");
+        System.out.println("Name: " + defaultAuto.getName() + " Cylinders: " + defaultAuto.getCylinders() + " Owner: " + defaultAuto.getOwner() + "\n");
+        System.out.println("Testing some vehicle objects setters :... ");
+        System.out.println("Set default's manufacturer to Pontiac and set its cylinders to 2");
+        defaultAuto.setName("Pontiac");
+        defaultAuto.setCylinders(2);
+        System.out.println("\n\n");
+        System.out.println("default now looks like this: " + defaultAuto + "\n");
+        
+
+        //toString test
+        System.out.println("toString test default: " + defaultAuto);
+        System.out.println("toString test Chevy: " + corvette + "\n");
+
+        //copy constructor test
+        System.out.println("Copy constructor test: ");
+        Auto pagani = new Auto(corvette);
+        System.out.println("creating copy of Chevy and comparing to itself. Is it a true copy? " + pagani.equals(corvette)+ "\n");
+
+        //equals test
+        System.out.println("Testing equals method:");
+        System.out.println("Does Chevy equal default? " + corvette.equals(defaultAuto));
+        System.out.println("Does default equal Chevy? " + defaultAuto.equals(corvette));
+        System.out.println("Does Chevy equal itself? "+ corvette.equals(corvette));
+        System.out.println("Does default equal itself? "+ defaultAuto.equals(defaultAuto) + "\n");
+
+        //clone test
+        System.out.println("Testing clone method on default:");
+        Vehicle cayanne = defaultAuto.clone();
+        System.out.println("default: " + defaultAuto);
+        System.out.println("clone: " + cayanne);
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        System.out.println("Time to test our Truck class!!");
+        Truck defaultTruck = new Truck();
+        Truck ram = new Truck("Ram", 12, new Person("Jake", "Ritter", 25, "333-33-0000"), 4.55, 5.433);
+        
+        //test getters and setters
+        System.out.println("Testing some Truck objects getters :... ");
+        System.out.println("Name: " + ram.getName() + " Cylinders: " + ram.getCylinders() + " Owner: " + ram.getOwner() + "\n");
+        System.out.println("Name: " + defaultTruck.getName() + " Cylinders: " + defaultTruck.getCylinders() + " Owner: " + defaultTruck.getOwner() + "\n");
+        System.out.println("Testing some truck objects setters :... ");
+        System.out.println("Set default's manufacturer to Ford and set its cylinders to 4");
+        defaultTruck.setName("Ford");
+        defaultTruck.setCylinders(4);
+        System.out.println("\n\n");
+        System.out.println("default now looks like this: " + defaultTruck + "\n");
+        
+
+        //toString test
+        System.out.println("toString test default: " + defaultTruck);
+        System.out.println("toString test Ram: " + ram + "\n");
+
+        //copy constructor test
+        System.out.println("Copy constructor test: ");
+        Truck ridgeline = new Truck(ram);
+        System.out.println("creating copy of Ram and comparing to itself. Is it a true copy? " + ridgeline.equals(ram)+ "\n");
+
+        //equals test
+        System.out.println("Testing equals method:");
+        System.out.println("Does Ram equal default? " + ram.equals(defaultTruck));
+        System.out.println("Does default equal Ram? " + defaultTruck.equals(ram));
+        System.out.println("Does Ram equal itself? "+ ram.equals(ram));
+        System.out.println("Does default equal itself? "+ defaultTruck.equals(defaultTruck) + "\n");
+
+        //clone test
+        System.out.println("Testing clone method on default:");
+        Vehicle pickup = defaultTruck.clone();
+        System.out.println("default: " + defaultTruck);
+        System.out.println("clone: " + pickup);
+
+        System.out.println("\n\n");
+        System.out.println("Let's finalize all these objects we made");
+
+        mustang.finalize();//vehicle
+        defaultVeh.finalize();//vehicle
+        porsche.finalize();//vehicle
+        ferrari.finalize();//vehicle
+        defaultAuto.finalize();//auto
+        corvette.finalize();//auto
+        pagani.finalize();//auto
+        cayanne.finalize();//auto
+        defaultTruck.finalize();//truck
+        pickup.finalize();//truck
+        ridgeline.finalize();//truck
+        ram.finalize();//truck
+
+        System.out.println("Polymorphism test. Creating array of objects of various classes; Vehicle, Auto, or Truck.");
+        System.out.println("\n\n");
+        Vehicle [] array1 = 
+        {
+            new Vehicle("Ford",   6,  new Person("Ryan", "Ritter",  28,   "867-05-0309")),
+            new Auto   ("Ford",   10, new Person("Jake", "Ritter",  25,   "333-33-0000"), 4,     2.78),
+            new Truck  ("Chevy",  8,  new Person("Sara", "Ritter",  24,   "444-05-1234"), 9.876, 8.99),
+            new Truck  ("Ram",    12, new Person("Craig", "Ritter", 88,   "987-65-4312"), 8.999, 11.111),
+            new Auto   ("Ford",   4,  new Person("Jesus", "Christ", 1000, "111-11-1111"), 6,     2.87),
+            new Vehicle("Toyota", 14, new Person("God", "Himself",  100,  "000-00-0000"))
+        };
+        System.out.println("\n\n");
+        for (Vehicle v : array1){
+            System.out.println(v);
+            v.finalize();
+            System.out.println("\n");
+        }
+            
+
+
+    }
+}

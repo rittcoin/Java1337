@@ -1,0 +1,102 @@
+// --------------------------------------------------------
+//                     Person.java
+// --------------------------------------------------------
+/**
+ *		@author this is the one to look at
+ *		@version 1.02.2
+ */
+
+
+public class Person {
+	// Class member data/fields/instance data
+
+	private String firstName;
+	private String lastName;
+	private int age;
+	private String ssn;
+	private boolean finalizeNotCalled;
+	
+
+	// Class member methods/behaviors - accessors/mutators - getters/setters
+
+	public void         setFirstName ( String x ) {	firstName = new String ( x );	}
+	public String       getFirstName ( )          { return new String ( firstName); }
+	public void         setLastName  ( String x ) {	lastName = new String ( x ); }
+	public String       getLastName  ( )          { return new String ( lastName); }
+	public void         setAge       ( int x )    { age = x; }
+	public int          getAge       ( )          { return age; }
+	public void         setSsn       ( String x ) {	ssn = new String ( x );	}
+	public String       getSsn       ( )          { return new String ( ssn); }
+	
+
+	public Person ( ) {
+		this ( "default person ", " ", 0, " 00000000" );
+		System.out.println ( "Person - default/no-arg constructor" );
+	}
+
+	public Person ( String fn, String ln, int a, String s ) {
+		firstName = new String ( fn );
+		lastName  = new String ( ln );
+		age = a;
+		ssn = new String ( s );
+		finalizeNotCalled = true;
+		System.out.println ( "Person - 4-arg overloaded constructor" );
+	}
+
+    /**
+     *		Person class Copy Constructor
+     *
+     *		@param - The original object, the one to be copied
+     *		@throws - NullPointerException - null argument passed to the constructor
+     *		@returns - a reference to the new object (copy).
+     *
+     */
+	public Person ( Person original ) {
+		if ( original == null )
+			throw new NullPointerException ( "Null argument passed to Person copy constructor" );
+
+		firstName = new String ( original.firstName);
+		lastName  = new String ( original.lastName);
+		age = original.age;
+		ssn = new String ( original.getSsn());
+		finalizeNotCalled = true;
+		System.out.println ( "Person - copy constructor" );
+	}
+
+	public String toString( ) {
+		String x;
+		x = " " + firstName + " " + lastName + " aged " + age + " ssn: " + ssn;
+		return x;
+	}
+
+	public boolean equals( Object obj ) {
+		if ( this == obj ) return true;		//  They're the same objects
+		if ( obj == null ) return false;	//  Argument is null
+		if ( getClass( ) != obj.getClass( ) ) return false;
+
+		Person d = ( Person ) obj;
+
+		if ( ( firstName.equals ( d.firstName ) ) &&
+		     ( lastName.equals ( d.lastName ) ) &&
+		     ( age == d.age ) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public void finalize() {
+		if ( finalizeNotCalled ){
+			// Do my own cleanup
+			finalizeNotCalled = false;
+			System.out.println ( "Person - finalize method" );
+		}
+
+	}
+
+
+
+}

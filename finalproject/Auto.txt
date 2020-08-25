@@ -1,0 +1,79 @@
+// --------------------------------------------------------
+//                     Auto.java
+// --------------------------------------------------------
+/**
+ *		@author Ryan Ritter
+ *		
+ */
+
+public class Auto extends Vehicle{
+    private int passengers;
+    private double weight; //in tons
+	private boolean finalizeNotCalled = true;
+	private boolean disposeCalled;
+    
+	public void         setpassengers(int x)     {passengers = x;}
+	public int          getPassengers()          {return passengers;}
+	public void         setWeight(int x)         {weight = x;}
+	public double       getWeight()              {return weight;}
+
+	public Auto() {
+		this ( "default Auto", 0, new Person(), 0, 0.0);
+		System.out.println ( "Auto - default/no-arg constructor" );
+    }
+    public Auto(String manufacturerName, int engineCyls, Person dude, int riders, double autoWeight){
+        super(manufacturerName, engineCyls, dude);
+        passengers = riders;
+        weight = autoWeight;
+        disposeCalled = false;
+        System.out.println("Auto - 5- arg overloaded constructor");
+        
+
+    }
+    //toString method
+    public String toString() {
+		String x;
+		x = "" + super.toString() + " " + passengers + " " + weight;
+		return x;
+	}
+    //equals method
+    public boolean equals( Object obj ) {
+		if (this == obj) return true;		//  They're the same objects
+		if (obj == null) return false;	//  Argument is null
+		if (getClass() != obj.getClass()) return false;
+
+		Auto d = (Auto) obj;
+
+        if ((super.equals(obj) && (passengers == d.passengers) && (weight == d.weight)))	
+        {
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	//clone
+	public Auto clone()
+	{
+		return new Auto(this);
+	}
+    //copy constructor
+    public Auto (Auto original) throws NullPointerException{
+        super(original);
+        passengers = original.passengers;
+        weight = original.weight;
+		System.out.println ( "Auto - copy constructor" );
+    }
+    public void finalize() {
+		if ( finalizeNotCalled ){
+			finalizeNotCalled = false;
+			System.out.println ( "Auto - finalize method" );
+		}
+	}
+	public void dispose()
+	{
+		disposeCalled = true;
+		System.out.println ( "Auto - dispose method" );
+	}
+}
